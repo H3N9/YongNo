@@ -1,4 +1,4 @@
-## กลุ่ม YongNo
+## กลุ่ม YoungNo
 #### นายรามิล อาจหาญ 61070187
 #### - Role: Developer
 # JSON
