@@ -12,5 +12,6 @@
 # JSON
  It's JavaScript Object Notation.  
  It's lightweight format for storing and transmit data.  
- It's easy to understand more than XML.  
- 
+ It's easy to understand more than XML.
+ It's built on a collection of name/value pairs 
+ It's realized as an array, vector, list, or sequence.
