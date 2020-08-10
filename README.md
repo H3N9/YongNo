@@ -7,6 +7,8 @@
 #### - Role: Project Management
 #### นายพัสกร อรุณสดใส 61070141
 #### - Role: Developer
+#### นายภูชิต รุ่งระวิ 61070166
+#### - Role: Developer
 # JSON
  It's JavaScript Object Notation.  
  It's lightweight format for storing and transmit data.  
