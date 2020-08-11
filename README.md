@@ -9,6 +9,9 @@
 #### - Role: Developer
 #### นายภูชิต รุ่งระวิ 61070166
 #### - Role: Developer
+#### นายชนายุส หนูเอียด 61070034
+### - Role: Front-end Developer
+
 # JSON
  It's JavaScript Object Notation.  
  It's lightweight format for storing and transmit data.  
