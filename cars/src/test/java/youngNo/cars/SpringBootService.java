@@ -69,37 +69,7 @@ public class SpringBootService {
 		return String.format("%s", json);
 		//return String.format("{\"payload\":\"%s\"}", json);
 	}
-	/*
-	@RequestMapping(value = "/car", method = RequestMethod.POST)
-	public String postCar(@RequestBody Object object) {
-		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
-		String json = "error";
-		try {
-			json = ow.writeValueAsString(object);
-			ObjectMapper mapper = new ObjectMapper();
-			JsonNode actualObj = mapper.readTree(json);
-			cars.put("7", actualObj);
-			
-			return String.format("%s", actualObj);
-			
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return String.format("error");
-	}
-	
-	public void addList(JsonNode node) {
-		//System.out.println(node);
-		String color = node.get("color").asText();
-		String type = node.get("type").asText();
-		int displacement = node.get("displacement").asInt();
-		boolean sunroof = node.get("sunroof").asBoolean();
-		int speed = node.get("speed").asInt();
-		Car car = new Car(color, type, displacement, sunroof, speed);
-		listCar.add(car);
-	}
-	*/
+
 	
 	@RequestMapping(value = "/car" , method = RequestMethod.POST)
 	public ResponseEntity<LinkedList<Car>> create(@RequestBody LinkedList<Car> list) {
@@ -127,7 +97,7 @@ public class SpringBootService {
 		return new ResponseEntity<Car>(car, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/car", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value = "/api/javainuse")
 	public ResponseEntity<LinkedList<Car>> getHello() {
 		return new ResponseEntity<LinkedList<Car>>(listCar, HttpStatus.OK);
 	}
