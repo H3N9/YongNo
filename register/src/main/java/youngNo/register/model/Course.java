@@ -7,8 +7,12 @@ public class Course {
 	private String title;
 	private Lecturer lecturer;
 	private ArrayList<Student> students;
+	
+	public Course() {
+		
+	}
+	
 	public Course(String id, String title, Lecturer lecturer) {
-		super();
 		this.id = id;
 		this.title = title;
 		this.lecturer = lecturer;

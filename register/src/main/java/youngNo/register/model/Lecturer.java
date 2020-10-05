@@ -4,6 +4,11 @@ public class Lecturer {
 	private String id;
 	private String firstName;
 	private String lastName;
+	
+	public Lecturer() {
+		
+	}
+	
 	public Lecturer(String id, String firstName, String lastName) {
 		super();
 		this.id = id;
