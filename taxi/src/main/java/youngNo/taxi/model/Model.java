@@ -1,7 +1,7 @@
 package youngNo.taxi.model;
 
 public class Model {
-	protected String id;
+	private String id;
 	protected static int count=0;
 	
 	

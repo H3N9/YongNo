@@ -13,7 +13,7 @@ public class Vehicle extends Model{
 	public Vehicle(String name, String brand, int speed) {
 		super();
 		this.name = name;
-		this.setBrand(brand);
+		this.brand = brand;
 		this.speed = speed;
 	}
 

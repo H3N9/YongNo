@@ -31,13 +31,13 @@ public class TaxiController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/taxi/vehicle")
-	public ResponseEntity<HashMap<String, Vehicle>> getAllVehicle(@RequestBody Vehicle vehicle){
-		this.vehicles.put(vehicle.getId(), vehicle);
+	public ResponseEntity<HashMap<String, Vehicle>> getAllVehicle(){
 		return new ResponseEntity<HashMap<String, Vehicle>>(vehicles, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/taxi/vehicle")
-	public ResponseEntity<HashMap<String, Vehicle>> addVehicle(){
+	public ResponseEntity<HashMap<String, Vehicle>> addVehicle(@RequestBody Vehicle vehicle){
+		this.vehicles.put(vehicle.getId(), vehicle);
 		return new ResponseEntity<HashMap<String, Vehicle>>(vehicles, HttpStatus.OK);
 	}
 	
