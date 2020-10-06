@@ -1,6 +1,6 @@
 package youngNo.register;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,22 +13,20 @@ import youngNo.register.model.*;
 
 @RestController
 public class HelloController {
-	private ArrayList<Student> students;
-	private ArrayList<Course> courses;
-	private ArrayList<Lecturer> lecturers;
+	private HashMap<String,Student> students;
+	private HashMap<String, Finance> finances;
+	private HashMap<String, Lecturer> lecturers;
+	private HashMap<String, Grade> grades;
+	private HashMap<String, Course> courses;
+	private HashMap<String, Evaluation> evaluates;
 	
 	public HelloController() {
-		this.students = new ArrayList<Student>();
-		this.students.add(new Student("1", "youngNo", "eee", "IT"));
-		this.students.add(new Student("2", "ppoh", "ees", "EN"));
-		
-		this.lecturers = new ArrayList<Lecturer>();
-		this.lecturers.add(new Lecturer("1", "savage", "lasa"));
-		this.lecturers.add(new Lecturer("2", "prayet", "chan"));
-		
-		this.courses = new ArrayList<Course>();
-		this.courses.add(new Course("1", "SOP", lecturers.get(0)));
-		this.courses.get(0).addStudent(students.get(0));
+		this.students =  new HashMap<String,Student>();
+		this.courses = new HashMap<String, Course>();
+		this.grades = new HashMap<String, Grade>();
+		this.lecturers = new HashMap<String, Lecturer>();
+		this.finances = new HashMap<String, Finance>();
+		this.evaluates = new  HashMap<String, Evaluation>();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
@@ -37,50 +35,61 @@ public class HelloController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register/student")
-	public ResponseEntity<ArrayList<Student>> getAllStudent(){
-		return new ResponseEntity<ArrayList<Student>>(students, HttpStatus.OK);
+	public ResponseEntity<HashMap<String, Student>> getAllStudent(){
+		return new ResponseEntity<HashMap<String, Student>>(students, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/register/student")
-	public ResponseEntity<ArrayList<Student>> addStudent(@RequestBody Student student){
-		this.students.add(student);
-		return new ResponseEntity<ArrayList<Student>>(students, HttpStatus.OK);
+	public ResponseEntity<HashMap<String, Student>> addStudent(@RequestBody Student student){
+		String key = ((String) student.getId());
+		this.students.put(key, student);
+		return new ResponseEntity<HashMap<String, Student>>(this.students, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register/student/{index}")
-	public ResponseEntity<Student> getStudent(@PathVariable("index") int index){
+	public ResponseEntity<Student> getStudent(@PathVariable("index") String index){
 		return new ResponseEntity<Student>(students.get(index), HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register/course")
-	public ResponseEntity<ArrayList<Course>> getAllCourse(){
-		return new ResponseEntity<ArrayList<Course>>(courses, HttpStatus.OK);
+	public ResponseEntity<HashMap<String, Course>> getAllCourse(){
+		return new ResponseEntity<HashMap<String, Course>>(courses, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/register/course")
-	public ResponseEntity<ArrayList<Course>> addCourse(@RequestBody CourseForm courseForm){
+	public ResponseEntity<HashMap<String, Course>> addCourse(@RequestBody CourseForm courseForm){
 		Course course = new Course(courseForm.getId(), courseForm.getTitle(), lecturers.get(courseForm.getLecturer()));
 		//ArrayList students = courseForm.getStudents();
 		//students.stream().forEach(action -> this.courses.add(this.students.get(action)));
-		course.addStudent(students.get(0));
-		this.courses.add(course);
-		return new ResponseEntity<ArrayList<Course>>(courses, HttpStatus.OK);
+		
+		this.courses.put((String)course.getId(), course);
+		return new ResponseEntity<HashMap<String, Course>>(courses, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register/lecturer")
-	public ResponseEntity<ArrayList<Lecturer>> getAllLecturer(){
-		return new ResponseEntity<ArrayList<Lecturer>>(lecturers, HttpStatus.OK);
+	public ResponseEntity<HashMap<String, Lecturer>> getAllLecturer(){
+		return new ResponseEntity<HashMap<String, Lecturer>>(lecturers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/register/lecturer")
-	public ResponseEntity<ArrayList<Lecturer>> addLecturer(@RequestBody Lecturer lecturer){
-		this.lecturers.add(lecturer);
-		return new ResponseEntity<ArrayList<Lecturer>>(lecturers, HttpStatus.OK);
+	public ResponseEntity<HashMap<String, Lecturer>> addLecturer(@RequestBody Lecturer lecturer){
+		this.lecturers.put((String)lecturer.getId(), lecturer);
+		return new ResponseEntity<HashMap<String, Lecturer>>(lecturers, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/register/lecturer/{index}")
-	public ResponseEntity<Lecturer> getLecturer(@PathVariable("index") int index){
+	public ResponseEntity<Lecturer> getLecturer(@PathVariable("index") String index){
 		return new ResponseEntity<Lecturer>(lecturers.get(index), HttpStatus.OK);
 	}
+	@RequestMapping(method = RequestMethod.POST, value = "/register/lecturer")
+	public ResponseEntity<HashMap<String, Evaluation>> addEvaluate(@RequestBody Evaluation evaluate){
+		String key = ((String) evaluate.id);
+		this.evaluates.put(key, evaluate);
+		return new ResponseEntity<HashMap<String, Lecturer>>(lecturers, HttpStatus.OK);
+	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/register/lecturer/{index}")
+	public ResponseEntity<Lecturer> getLecturer(@PathVariable("index") String index){
+		return new ResponseEntity<Lecturer>(lecturers.get(index), HttpStatus.OK);
+	}
 }
